@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>调整保证金</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 12px 8px;
+    }
+    .nav .pair {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 16px; font-weight: 700;
+    }
+    .nav .sub { font-size: 12px; color: var(--text-2); margin-top: 1px; margin-left: 38px; }
+    .card {
+      margin: 4px 12px 8px; border: 0.5px solid var(--border);
+      border-radius: 14px; padding: 14px 14px 12px;
+      background: #fff;
+    }
+    .card-hd { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .card-hd .t { font-size: 15px; font-weight: 700; }
+    .metrics { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .metrics .lbl { font-size: 12px; color: var(--text-2); }
+    .metrics .val { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .metrics .r { text-align: right; }
+    .metrics .edit { display: inline-flex; align-items: center; gap: 2px; }
+    .rows { border-top: 0.5px solid var(--border-light); }
+    .rows .r {
+      display: flex; justify-content: space-between;
+      padding: 9px 0; font-size: 13px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .rows .r:last-child { border-bottom: none; }
+    .rows .r .k { color: var(--text-2); }
+    .rows .r .v { font-weight: 500; }
+    .card-acts { display: flex; gap: 10px; margin-top: 12px; }
+    .card-acts button {
+      flex: 1; height: 40px; border-radius: 999px;
+      background: var(--bg-muted); font-size: 14px; font-weight: 500;
+    }
+    .hist-tabs {
+      display: flex; gap: 24px; padding: 10px 16px 0;
+      font-size: 14px; color: var(--text-2);
+      border-top: 0.5px solid var(--border);
+    }
+    .hist-tabs .on {
+      color: #000; font-weight: 700; padding-bottom: 10px;
+      border-bottom: 2.5px solid #000;
+    }
+    .hrow {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 16px;
+    }
+    .hrow .date { font-size: 11px; color: var(--text-2); width: 72px; flex-shrink: 0; }
+    .hrow .act { font-size: 14px; font-weight: 600; }
+    .hrow .right { margin-left: auto; font-size: 13px; font-weight: 500; }
+    .sheet { max-height: 42%; padding-top: 4px; }
+    .sheet-title {
+      font-size: 17px; font-weight: 700;
+      padding: 12px 20px 8px;
+    }
+    .opt {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px;
+    }
+    .opt .ico {
+      width: 28px; height: 28px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 400; line-height: 1; margin-top: 2px;
+    }
+    .opt .body { flex: 1; min-width: 0; }
+    .opt .title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .opt .desc { font-size: 12px; color: var(--text-2); line-height: 1.45; }
+    .opt .chev { color: #c7c7cc; margin-top: 8px; flex-shrink: 0; }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:04</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg>
+      <div>
+        <div class="pair"><div class="coin btc" style="width:28px;height:28px;font-size:13px">₿</div>BTC-USDC</div>
+        <div class="sub">40x 永续合约</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <span class="t">仓位</span>
+        <span class="badge-short-soft">做空 10x</span>
+      </div>
+      <div class="metrics">
+        <div>
+          <div class="lbl">未实现盈亏</div>
+          <div class="val green">+$0.17 (+6.7%)</div>
+        </div>
+        <div class="r">
+          <div class="lbl edit">保证金（逐仓） <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+          <div class="val">1.24 USDC</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="r"><span class="k">开仓均价</span><span class="v">63,890</span></div>
+        <div class="r"><span class="k">持仓数量</span><span class="v">0.00016 BTC</span></div>
+        <div class="r"><span class="k">预估强平价</span><span class="v">71,280</span></div>
+        <div class="r"><span class="k">止盈/止损</span><span class="v">未设定</span></div>
+        <div class="r"><span class="k">标记价格</span><span class="v green">64,300</span></div>
+      </div>
+      <div class="card-acts">
+        <button>调整止盈/止损</button>
+        <button>平仓</button>
+      </div>
+    </div>
+    <div class="hist-tabs">
+      <span class="on">成交记录</span>
+      <span>资产变动</span>
+    </div>
+    <div class="hrow">
+      <div class="date">08/07/2026</div>
+      <div class="act">做空 BTC-USDC</div>
+      <div class="right red">+ 0.01 USDC</div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">调整保证金</div>
+    <div class="opt">
+      <div class="ico">+</div>
+      <div class="body">
+        <div class="title">增加保证金</div>
+        <div class="desc">增加保证金可以使您的仓位更安全，并降低强平风险。</div>
+      </div>
+      <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+    </div>
+    <div class="opt">
+      <div class="ico">−</div>
+      <div class="body">
+        <div class="title">减少保证金</div>
+        <div class="desc">当有浮盈时可以从仓位中提取多余的保证金。</div>
+      </div>
+      <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+    </div>
+  </div>
+</div>
+</body>
+</html>

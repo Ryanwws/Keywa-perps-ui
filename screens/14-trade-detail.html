@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>成交詳情</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center;
+      padding: 4px 12px 8px;
+    }
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 28px 16px 24px;
+    }
+    .hero .coin { width: 56px; height: 56px; font-size: 26px; margin-bottom: 16px; }
+    .hero .amt { font-size: 28px; font-weight: 700; letter-spacing: -0.4px; }
+    .hero .sub { font-size: 15px; color: var(--text); margin-top: 8px; font-weight: 500; }
+    .divider { height: 0.5px; background: var(--border); margin: 0 16px 4px; }
+    .rows { padding: 8px 16px; }
+    .rows .r {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; font-size: 14px;
+    }
+    .rows .r .k { color: var(--text-2); }
+    .rows .r .v { font-weight: 500; }
+    .explorer {
+      margin: 28px 40px 0;
+      height: 44px; border-radius: 999px;
+      background: var(--bg-muted);
+      font-size: 14px; font-weight: 500;
+      width: calc(100% - 80px);
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:06</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg>
+    </div>
+    <div class="hero">
+      <div class="coin btc">₿</div>
+      <div class="amt">10.29 USDC</div>
+      <div class="sub">做空 BTC-USDC</div>
+    </div>
+    <div class="divider"></div>
+    <div class="rows">
+      <div class="r"><span class="k">時間</span><span class="v">2026/08/07 10:05</span></div>
+      <div class="r"><span class="k">數量</span><span class="v">0.00016 BTC</span></div>
+      <div class="r"><span class="k">成交價格</span><span class="v">64380</span></div>
+      <div class="r"><span class="k">交易手續費</span><span class="v">-0.000507 USDC</span></div>
+      <div class="r"><span class="k">淨盈虧</span><span class="v red">-0.000507 USDC</span></div>
+    </div>
+    <button class="explorer">在區塊鏈瀏覽器中查看</button>
+  </div>
+</div>
+</body>
+</html>

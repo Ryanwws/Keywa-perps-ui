@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>BTC-USDC · 當前委託（三態）</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .phone { background: var(--bg-muted); }
+    .nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 12px 8px; background: #fff;
+    }
+    .nav .pair {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 16px; font-weight: 700;
+    }
+    .nav .sub { font-size: 12px; color: var(--text-2); margin-top: 1px; margin-left: 38px; }
+    .hist-tabs {
+      display: flex; gap: 28px; padding: 8px 16px 0;
+      font-size: 14px; color: var(--text-2);
+      background: #fff; border-bottom: 0.5px solid var(--border);
+    }
+    .hist-tabs .on {
+      color: #000; font-weight: 700; padding-bottom: 10px;
+      border-bottom: 2.5px solid #000; margin-bottom: -0.5px;
+    }
+    .hist-tabs span { padding-bottom: 10px; }
+    .olist { padding: 12px 12px 90px; }
+    .ocard {
+      background: #fff; border-radius: 14px;
+      padding: 14px 14px 12px; margin-bottom: 10px;
+    }
+    .ocard .top {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 15px; font-weight: 600;
+    }
+    .ocard .top .type { color: var(--text); font-weight: 500; }
+    .ocard .meta {
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--text-2); margin-top: 6px; margin-bottom: 10px;
+    }
+    .ocard .rows .r {
+      display: flex; justify-content: space-between;
+      padding: 7px 0; font-size: 13px;
+    }
+    .ocard .rows .r .k { color: var(--text-2); }
+    .ocard .rows .r .v { font-weight: 500; }
+    .ocard .cancel {
+      margin-top: 10px; width: 100%; height: 40px;
+      border-radius: 999px; background: var(--bg-muted);
+      font-size: 14px; font-weight: 500;
+    }
+    .price-float {
+      position: absolute; left: 12px; right: 12px; bottom: calc(10px + var(--safe-b));
+      background: #fff; border-radius: 14px;
+      padding: 10px 14px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      z-index: 10;
+    }
+    .price-float .left { display: flex; align-items: center; gap: 8px; }
+    .price-float .px { font-size: 18px; font-weight: 700; }
+    .price-float .chg { font-size: 12px; margin-top: 1px; }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status" style="background:#fff">
+    <span>14:37</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg>
+      <div>
+        <div class="pair"><div class="coin btc" style="width:28px;height:28px;font-size:13px">₿</div>BTC-USDC</div>
+        <div class="sub">40x 永續合約</div>
+      </div>
+    </div>
+    <div class="hist-tabs">
+      <span>歷史紀錄</span>
+      <span class="on">當前委託</span>
+    </div>
+    <div class="scroll">
+      <div class="olist">
+        <div class="ocard">
+          <div class="top">
+            <span class="green">BTC 做多</span>
+            <span class="type">市價止損</span>
+          </div>
+          <div class="meta">
+            <span>2026-08-07 14:36</span>
+            <span>全部倉位</span>
+          </div>
+          <div class="rows">
+            <div class="r"><span class="k">觸發價格</span><span class="v">67,000</span></div>
+            <div class="r"><span class="k">委託數量</span><span class="v">全部倉位</span></div>
+            <div class="r"><span class="k">只減倉</span><span class="v">是</span></div>
+          </div>
+          <button class="cancel">取消</button>
+        </div>
+        <div class="ocard">
+          <div class="top">
+            <span class="green">BTC 做多</span>
+            <span class="type">限價止盈</span>
+          </div>
+          <div class="meta">
+            <span>2026-08-07 14:36</span>
+            <span>全部倉位</span>
+          </div>
+          <div class="rows">
+            <div class="r"><span class="k">限價</span><span class="v">59,500</span></div>
+            <div class="r"><span class="k">觸發價格</span><span class="v">59,500</span></div>
+            <div class="r"><span class="k">委託數量</span><span class="v">全部倉位</span></div>
+            <div class="r"><span class="k">只減倉</span><span class="v">是</span></div>
+          </div>
+          <button class="cancel">取消</button>
+        </div>
+        <div class="ocard">
+          <div class="top">
+            <span class="red">BTC 做空</span>
+            <span class="type">限價</span>
+          </div>
+          <div class="meta">
+            <span>2026-08-07 14:35</span>
+          </div>
+          <div class="rows">
+            <div class="r"><span class="k">限價</span><span class="v">67,526</span></div>
+            <div class="r"><span class="k">委託數量</span><span class="v">0.00016 BTC</span></div>
+            <div class="r"><span class="k">止盈/止損</span><span class="v">未設定</span></div>
+          </div>
+          <button class="cancel">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="price-float">
+    <div class="left">
+      <div class="coin btc" style="width:28px;height:28px;font-size:13px">₿</div>
+      <div>
+        <div class="px">64,349</div>
+        <div class="chg red">-0.71%</div>
+      </div>
+    </div>
+    <svg width="88" height="32" viewBox="0 0 88 32" fill="none">
+      <path d="M0 8 L10 12 L18 6 L28 14 L38 10 L48 18 L58 12 L68 20 L78 16 L88 24" stroke="#f14f5a" stroke-width="1.6" fill="none"/>
+    </svg>
+  </div>
+</div>
+</body>
+</html>
