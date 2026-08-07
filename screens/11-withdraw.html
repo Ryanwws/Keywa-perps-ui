@@ -42,12 +42,26 @@
       background: #000; color: #fff; width: calc(100% - 32px);
       font-size: 16px; font-weight: 600;
     }
+    .status{position:relative;padding:14px 32px 0;height:55px;font-size:16px}
+    .status:before{content:"";position:absolute;width:153px;height:39px;border-radius:22px;background:#000;top:13px;left:50%;transform:translateX(-50%)}
+    .status:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#f23346;top:27px;left:128px}
+    .nav{padding:14px 16px 0}.nav .back{left:16px;top:14px}.nav .title{font-size:17px}
+    .amt{padding:83px 16px 0}.amt .big{font-size:34px;color:#ed334f}
+    .amt .big:after{content:"";display:inline-block;width:1.5px;height:47px;background:#00bf78;vertical-align:-11px;margin-left:1px}
+    .hints{font-size:12px;line-height:1.9;padding:6px 16px 7px}.hints br+*{color:red}
+    .slider-track{margin:0 40px;height:25px}.slider-track .thumb{width:12px;height:12px;border:2px solid #222;left:19%}.slider-track .fill{width:19%}.slider-track .marks i{width:6px;height:6px;background:#eee}.slider-track .marks i:first-child{background:#222}
+    .slider-labels{padding:0 33px 25px;font-size:11px}
+    .rows{padding:0 16px}.row{padding:7px 0;border:0;font-size:13px}
+    .confirm{margin:0 16px 9px;height:43px;width:calc(100% - 32px);font-size:14px;background:#aaa}
+    .keypad{height:157px;background:#fff;padding:0 16px 8px;flex-shrink:0}
+    .keypad .key{height:37px;margin:0;background:#fff;box-shadow:none;border-radius:0;font-size:22px}
+    .keypad .key.del{font-size:0}.keypad .key.del:after{content:"⌫";font-size:19px}
   </style>
 </head>
 <body class="capture">
 <div class="phone" id="screen">
   <div class="status">
-    <span>10:06</span>
+    <span>10:07</span>
     <div class="right">
       <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
@@ -60,11 +74,11 @@
       <div class="title">提現</div>
     </div>
     <div class="amt">
-      <div class="big">7.827753</div>
+      <div class="big">1.48</div>
     </div>
     <div class="hints">
       可提取：7.827753 USDC<br/>
-      最小提幣數量：10 USDC
+      <span class="red">最小提幣數量：10 USDC</span>
     </div>
     <div class="slider-track">
       <div class="rail"></div>

@@ -6,38 +6,14 @@
   <title>历史记录 · 资金费用</title>
   <link rel="stylesheet" href="../css/app.css" />
   <style>
-    .nav {
-      display: flex; align-items: center; justify-content: center;
-      padding: 4px 12px 10px; position: relative;
-    }
-    .nav .back { position: absolute; left: 12px; top: 6px; }
-    .nav .title { font-size: 17px; font-weight: 700; }
-    .tabs {
-      display: flex; gap: 18px; padding: 0 16px;
-      font-size: 14px; color: var(--text-2);
-      border-bottom: 0.5px solid var(--border);
-      overflow-x: auto; white-space: nowrap;
-    }
-    .tabs .on {
-      color: #000; font-weight: 700; padding-bottom: 10px;
-      border-bottom: 2.5px solid #000; margin-bottom: -0.5px;
-    }
-    .tabs span { padding-bottom: 10px; }
-    .hrow {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 0.5px solid var(--border-light);
-    }
-    .hrow .mid { flex: 1; min-width: 0; }
-    .hrow .name { font-size: 15px; font-weight: 600; }
-    .hrow .sub { font-size: 12px; color: var(--text-2); margin-top: 3px; }
-    .hrow .amt { font-size: 14px; font-weight: 600; white-space: nowrap; }
+    .status{height:48px;padding:21px 31px 0;font-size:16px;position:relative}.island{position:absolute;left:116px;top:13px;width:153px;height:33px;border-radius:20px;background:#000}.island:before{content:"";position:absolute;left:11px;top:11px;width:10px;height:10px;border-radius:50%;background:#e92e3b}
+    .nav{height:59px;display:flex;align-items:center;justify-content:center;position:relative}.nav .back{position:absolute;left:15px;top:19px}.nav .title{font-size:17px;font-weight:700}.tabs{height:46px;display:flex;gap:20px;padding:5px 15px 0;font-size:14px;color:#8e8e93;white-space:nowrap}.tabs .on{color:#111;font-weight:700;position:relative}.tabs .on:after{content:"";position:absolute;width:20px;height:2px;background:#111;border-radius:2px;left:50%;bottom:2px;transform:translateX(-50%)}.hrow{display:flex;align-items:center;gap:11px;padding:9px 14px;height:59px}.hrow .coin{width:21px!important;height:21px!important;font-size:11px!important}.hrow .coin.eth{background:transparent;color:#243b38;font-size:15px!important}.hrow .mid{flex:1;min-width:0}.hrow .name{font-size:14px;font-weight:600}.hrow .sub{font-size:11px;color:#999;margin-top:2px}.hrow .amt{font-size:13px;font-weight:600;white-space:nowrap}
   </style>
 </head>
 <body class="capture">
 <div class="phone" id="screen">
   <div class="status">
-    <span>10:06</span>
+    <span>10:06</span><div class="island"></div>
     <div class="right">
       <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
@@ -58,66 +34,72 @@
       <div class="hrow">
         <div class="coin btc" style="width:36px;height:36px;font-size:16px">₿</div>
         <div class="mid">
-          <div class="name">BTC USDC</div>
-          <div class="sub">资金费用 BTC</div>
+          <div class="name">BTC-USDC</div>
+          <div class="sub">0.00016 BTC</div>
         </div>
-        <div class="amt green">+0.01 USDC</div>
+        <div class="amt green">&lt;0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin eth" style="width:36px;height:36px;font-size:14px">◆</div>
         <div class="mid">
-          <div class="name">ETH USDC</div>
-          <div class="sub">资金费用 ETH</div>
+          <div class="name">ETH-USDC</div>
+          <div class="sub">0.0055 ETH</div>
         </div>
-        <div class="amt red">-0.01 USDC</div>
+        <div class="amt red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin btc" style="width:36px;height:36px;font-size:16px">₿</div>
         <div class="mid">
-          <div class="name">BTC USDC</div>
-          <div class="sub">资金费用 BTC</div>
+          <div class="name">BTC-USDC</div><div class="sub">0.00016 BTC</div>
         </div>
-        <div class="amt green">+0.01 USDC</div>
+        <div class="amt green">&lt;0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin eth" style="width:36px;height:36px;font-size:14px">◆</div>
         <div class="mid">
-          <div class="name">ETH USDC</div>
-          <div class="sub">资金费用 ETH</div>
+          <div class="name">ETH-USDC</div><div class="sub">0.0055 ETH</div>
         </div>
-        <div class="amt red">-0.01 USDC</div>
+        <div class="amt red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin btc" style="width:36px;height:36px;font-size:16px">₿</div>
         <div class="mid">
-          <div class="name">BTC USDC</div>
-          <div class="sub">资金费用 BTC</div>
+          <div class="name">BTC-USDC</div><div class="sub">0.00016 BTC</div>
         </div>
-        <div class="amt green">+0.01 USDC</div>
+        <div class="amt green">&lt;0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin eth" style="width:36px;height:36px;font-size:14px">◆</div>
         <div class="mid">
-          <div class="name">ETH USDC</div>
-          <div class="sub">资金费用 ETH</div>
+          <div class="name">ETH-USDC</div><div class="sub">0.0055 ETH</div>
         </div>
-        <div class="amt red">-0.01 USDC</div>
+        <div class="amt red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin btc" style="width:36px;height:36px;font-size:16px">₿</div>
         <div class="mid">
-          <div class="name">BTC USDC</div>
-          <div class="sub">资金费用 BTC</div>
+          <div class="name">BTC-USDC</div><div class="sub">0.00016 BTC</div>
         </div>
-        <div class="amt green">+0.01 USDC</div>
+        <div class="amt green">&lt;0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="coin eth" style="width:36px;height:36px;font-size:14px">◆</div>
         <div class="mid">
-          <div class="name">ETH USDC</div>
-          <div class="sub">资金费用 ETH</div>
+          <div class="name">ETH-USDC</div><div class="sub">0.0055 ETH</div>
         </div>
-        <div class="amt red">-0.01 USDC</div>
+        <div class="amt red">&gt;-0.01 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="coin btc">₿</div><div class="mid"><div class="name">BTC-USDC</div><div class="sub">0.00016 BTC</div></div><div class="amt green">&lt;0.01 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="coin eth">♦</div><div class="mid"><div class="name">ETH-USDC</div><div class="sub">0.0055 ETH</div></div><div class="amt red">&gt;-0.01 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="coin btc">₿</div><div class="mid"><div class="name">BTC-USDC</div><div class="sub">0.00016 BTC</div></div><div class="amt green">&lt;0.01 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="coin eth">♦</div><div class="mid"><div class="name">ETH-USDC</div><div class="sub">0.0055 ETH</div></div><div class="amt red">&gt;-0.01 USDC</div>
       </div>
     </div>
   </div>

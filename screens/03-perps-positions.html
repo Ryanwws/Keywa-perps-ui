@@ -85,6 +85,14 @@
       height: 28px; padding: 0 12px; border-radius: 8px;
       background: var(--bg-muted); color: #000; font-size: 12px; font-weight: 500;
     }
+    .status{height:63px;padding:22px 32px 0;font-size:16px;position:relative}
+    .status::before{content:"";position:absolute;top:13px;left:116px;width:153px;height:34px;border-radius:19px;background:#000}
+    .status::after{content:"";position:absolute;top:24px;left:127px;width:10px;height:10px;border-radius:50%;background:#ed3d4d}
+    .hdr{padding:6px 16px 24px}.hdr h1{font-size:18px}.hdr h1 .info{width:13px;height:13px;font-size:9px}.hdr .acts{gap:18px}
+    .asset-card{margin:0 14px 31px;border-radius:14px;padding:19px 14px 15px;background:#f7f7f7}.asset-card .lbl{font-size:11px}.asset-card .total{font-size:23px;margin:6px 0 3px}.asset-card .avail{font-size:12px}.asset-card .logos{top:36px;right:18px}.asset-card .logos .usdc{width:30px;height:30px}
+    .asset-btns{margin-top:21px;gap:12px}.asset-btns button{height:37px;font-size:13px}.tabs{gap:22px;padding:0 16px;font-size:14px;border:0}.tabs span,.tabs .on{padding-bottom:10px}
+    .pos{padding:14px 14px 13px}.pos-top{gap:11px}.coin{width:29px;height:29px}.pos .name,.pos .amt{font-size:14px}.pos .sub,.pos .pnl{font-size:11px}.pos-meta{padding-left:40px;margin-top:12px;font-size:11px;align-items:flex-end}.pos-meta span{display:block;line-height:20px;width:145px}.pos-meta .close{height:29px;border-radius:15px;padding:0 15px;font-size:12px}
+    .tabbar{height:67px;padding:8px 0 18px}.tabbar a{font-size:9px;gap:2px}.tabbar a svg{width:20px;height:20px}.tabbar .infty{font-size:21px;line-height:20px}
   </style>
 </head>
 <body class="capture">
@@ -137,7 +145,7 @@
           </div>
         </div>
         <div class="pos-meta">
-          <span>當前價格 64,381 &nbsp;&nbsp; 強平價 71,292</span>
+          <span>當前價格 64,381<br>強平價 71,292</span>
           <button class="close">平倉</button>
         </div>
       </div>
@@ -154,7 +162,7 @@
           </div>
         </div>
         <div class="pos-meta">
-          <span>當前價格 1,901.9 &nbsp;&nbsp; 強平價 1,751.7</span>
+          <span>當前價格 1,901.9<br>強平價 1,751.7</span>
           <button class="close">平倉</button>
         </div>
       </div>

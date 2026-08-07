@@ -6,10 +6,10 @@
   <title>BTC-USDC · 當前委託（三態）</title>
   <link rel="stylesheet" href="../css/app.css" />
   <style>
-    .phone { background: var(--bg-muted); }
+    .phone { background:#fafafa}.status{height:48px;padding:21px 31px 0;font-size:16px;position:relative}.island{position:absolute;left:116px;top:13px;width:153px;height:33px;border-radius:20px;background:#000}.island:before{content:"";position:absolute;left:11px;top:11px;width:10px;height:10px;border-radius:50%;background:#e92e3b}
     .nav {
       display: flex; align-items: center; gap: 8px;
-      padding: 4px 12px 8px; background: #fff;
+      height:58px;padding:0 15px;background:#fff;
     }
     .nav .pair {
       display: flex; align-items: center; gap: 6px;
@@ -17,7 +17,7 @@
     }
     .nav .sub { font-size: 12px; color: var(--text-2); margin-top: 1px; margin-left: 38px; }
     .hist-tabs {
-      display: flex; gap: 28px; padding: 8px 16px 0;
+      height:47px;display:flex;gap:22px;padding:6px 15px 0;
       font-size: 14px; color: var(--text-2);
       background: #fff; border-bottom: 0.5px solid var(--border);
     }
@@ -26,37 +26,34 @@
       border-bottom: 2.5px solid #000; margin-bottom: -0.5px;
     }
     .hist-tabs span { padding-bottom: 10px; }
-    .olist { padding: 12px 12px 90px; }
+    .olist { padding: 8px 14px 92px; }
     .ocard {
-      background: #fff; border-radius: 14px;
-      padding: 14px 14px 12px; margin-bottom: 10px;
+      background:#fff;border-radius:12px;padding:8px 14px;margin-bottom:6px;
     }
     .ocard .top {
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 15px; font-weight: 600;
+      font-size: 14px; font-weight: 600;
     }
     .ocard .top .type { color: var(--text); font-weight: 500; }
     .ocard .meta {
       display: flex; justify-content: space-between;
-      font-size: 12px; color: var(--text-2); margin-top: 6px; margin-bottom: 10px;
+      font-size:10px;color:#aaa;margin-top:2px;margin-bottom:3px;
     }
     .ocard .rows .r {
       display: flex; justify-content: space-between;
-      padding: 7px 0; font-size: 13px;
+      padding:2px 0;font-size:11px;
     }
     .ocard .rows .r .k { color: var(--text-2); }
     .ocard .rows .r .v { font-weight: 500; }
     .ocard .cancel {
-      margin-top: 10px; width: 100%; height: 40px;
+      margin-top:4px;width:100%;height:28px;
       border-radius: 999px; background: var(--bg-muted);
-      font-size: 14px; font-weight: 500;
+      font-size: 13px; font-weight: 500;
     }
     .price-float {
-      position: absolute; left: 12px; right: 12px; bottom: calc(10px + var(--safe-b));
-      background: #fff; border-radius: 14px;
-      padding: 10px 14px;
+      position:absolute;left:0;right:0;bottom:0;height:92px;background:#fff;border-radius:18px 18px 0 0;padding:18px 14px 25px;
       display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      box-shadow:0 -1px 8px rgba(0,0,0,.05);
       z-index: 10;
     }
     .price-float .left { display: flex; align-items: center; gap: 8px; }
@@ -67,7 +64,7 @@
 <body class="capture">
 <div class="phone" id="screen">
   <div class="status" style="background:#fff">
-    <span>14:37</span>
+    <span>14:37</span><div class="island"></div>
     <div class="right">
       <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>

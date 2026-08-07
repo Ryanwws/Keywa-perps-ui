@@ -75,12 +75,21 @@
       display: flex; gap: 12px; font-size: 12px; color: var(--text-2);
     }
     .bottom-bar .tf .on { color: #000; font-weight: 700; }
+    .status{height:64px;padding:22px 32px 0;font-size:16px;position:relative}
+    .status::before{content:"";position:absolute;top:13px;left:116px;width:153px;height:34px;border-radius:19px;background:#000}
+    .status::after{content:"";position:absolute;top:24px;left:127px;width:10px;height:10px;border-radius:50%;background:#ed3d4d}
+    .nav{height:52px;padding:2px 16px 8px;gap:105px}.nav .back{width:20px}.nav .pair{font-size:14px;white-space:nowrap}.nav .sub{font-size:10px;margin-left:34px}.nav .pair .coin{width:22px!important;height:22px!important;font-size:11px!important}
+    .card{margin:0 14px 10px;border:0;border-radius:13px;padding:13px 14px 14px;background:linear-gradient(#fff 0 33px,#fafafa 33px)}
+    .card-hd{margin-bottom:16px;margin-left:-14px}.card-hd .t{font-size:14px}.badge-short-soft{font-size:11px;padding:2px 5px}.metrics{margin-bottom:11px}.metrics .lbl{font-size:11px}.metrics .val{font-size:14px;margin-top:4px}.rows .r{padding:5px 0;font-size:12px;border:0}.card-acts{margin-top:9px;gap:10px}.card-acts button{height:37px;font-size:13px}
+    .hist-tabs{padding:0 16px;gap:23px;border:0;font-size:13px}.hist-tabs span,.hist-tabs .on{padding-bottom:10px}.hist-tabs .on{border-bottom-width:2px}
+    .hrow{position:relative;display:flex;flex-wrap:wrap;gap:0;padding:25px 15px 10px;border:0}.hrow .date{position:absolute;top:6px;left:15px;width:auto;font-size:10px}.hrow .mid{padding-left:32px}.hrow .act{font-size:13px;position:relative}.hrow .act .coin{position:absolute;left:-32px;top:0;width:21px!important;height:21px!important;font-size:10px!important}.hrow .qty{font-size:10px;margin-top:1px}.hrow .right{font-size:12px;padding-top:7px;color:var(--red)!important}.hrow .right.green{color:var(--green)!important}
+    .bottom-bar{height:96px;border-radius:18px 18px 0 0;box-shadow:0 -1px 5px rgba(0,0,0,.08);padding:24px 15px 24px}.bottom-bar .quote{display:flex;align-items:center;gap:9px}.bottom-bar .quote .coin{width:22px;height:22px;font-size:10px}.bottom-bar .px{font-size:17px}.bottom-bar .chg{display:block;margin:1px 0 0;font-size:10px}.mini-chart{width:98px;height:40px}
   </style>
 </head>
 <body class="capture">
 <div class="phone" id="screen">
   <div class="status">
-    <span>10:03</span>
+    <span>10:04</span>
     <div class="right">
       <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
@@ -104,7 +113,7 @@
         <div class="metrics">
           <div>
             <div class="lbl">未實現盈虧</div>
-            <div class="val green">+$0.17 (+16.8%)</div>
+            <div class="val green">+$0.17 (+16.7%)</div>
           </div>
           <div class="r">
             <div class="lbl">保證金（逐倉）</div>
@@ -133,7 +142,7 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開空 BTC-USDC</div>
           <div class="qty">0.00016 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">17/06/2026</div>
@@ -149,7 +158,7 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開多 BTC-USDC</div>
           <div class="qty">0.00153 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right">-0.044 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">17/04/2026</div>
@@ -161,13 +170,11 @@
       </div>
     </div>
     <div class="bottom-bar">
-      <div>
-        <span class="px">64,397</span>
-        <span class="chg red">-0.26%</span>
+      <div class="quote">
+        <div class="coin btc">₿</div>
+        <div><span class="px">64,394</span><span class="chg red">-0.26%</span></div>
       </div>
-      <div class="tf">
-        <span class="on">1m</span><span>5m</span><span>15m</span>
-      </div>
+      <svg class="mini-chart" viewBox="0 0 98 40" fill="none"><path d="M1 31L5 15L9 12L13 17L17 7L21 18L26 20L30 28L36 29L39 16L43 18L47 32L54 34L58 21L62 17L67 22L72 21L76 29L82 31L87 31L91 36L97 34" stroke="#f14f5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
   </div>
 </div>

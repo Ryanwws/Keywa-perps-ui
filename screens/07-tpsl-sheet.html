@@ -88,6 +88,33 @@
     .sheet-acts .cancel { background: var(--bg-muted); }
     .sheet-acts .ok { background: #000; color: #fff; }
     .sheet .keypad { flex-shrink: 0; }
+    /* screenshot calibration */
+    .status{position:relative;padding:14px 32px 0;height:55px;font-size:16px;z-index:2}
+    .status:before{content:"";position:absolute;width:153px;height:39px;border-radius:22px;background:#000;top:13px;left:50%;transform:translateX(-50%)}
+    .status:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#f23346;top:27px;left:128px}
+    .nav{padding:13px 16px 12px;justify-content:center;position:relative}
+    .nav>div:first-child{position:absolute;left:15px}
+    .nav .pair{font-size:14px}.nav .sub{font-size:10px;margin-left:34px}
+    .coin.btc{font-family:Arial,sans-serif}
+    .card{margin:0 16px;padding:11px 14px;border-radius:11px}.card-hd{margin-bottom:10px}
+    .bg-fill{font-size:12px}
+    .overlay{background:rgba(0,0,0,.13)}
+    .sheet{height:590px;max-height:none;border-radius:18px 18px 0 0;padding-bottom:0}
+    .sheet-handle{display:none}
+    .sheet-hd{justify-content:flex-start;padding:23px 16px 13px}
+    .sheet-hd h2{font-size:18px}
+    .sheet-hd:after{content:"×";position:absolute;right:14px;top:22px;width:21px;height:21px;border:1px solid #d8d8dc;border-radius:50%;color:#a4a4a8;font-size:17px;line-height:18px;text-align:center;font-weight:400}
+    .avg{text-align:left;margin:0 16px 24px;font-size:14px}
+    .block{padding:0 16px 22px}.block .title{font-size:16px;margin-bottom:10px}
+    .trig{margin-bottom:8px}.trig .field{background:#fff;border:1px solid #dedee2;border-radius:7px;padding:8px 10px;min-height:51px}
+    .trig .field .lbl{font-size:13px}.trig .field .val{font-size:16px}
+    .chips{gap:8px;flex-wrap:nowrap}.chips span{padding:0;flex:1;justify-content:center;height:25px;border-radius:7px;font-size:11px}
+    .chips span.on{background:var(--bg-muted);color:#000}.est{font-size:11px}
+    .sheet-acts{padding:0 16px 8px;gap:8px}.sheet-acts button{height:43px;font-size:16px}
+    .keypad{height:157px;background:#fff;padding:0 16px 8px}
+    .keypad .key{height:37px;margin:0;background:#fff;box-shadow:none;border-radius:0;font-size:22px}
+    .keypad .key.del{font-size:0}
+    .keypad .key.del:after{content:"⌫";font-size:19px}
   </style>
 </head>
 <body class="capture">

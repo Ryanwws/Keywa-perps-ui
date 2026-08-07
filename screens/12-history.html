@@ -37,6 +37,20 @@
     }
     .hrow .qty { font-size: 12px; color: var(--text-2); margin-top: 3px; }
     .hrow .right { text-align: right; font-size: 13px; font-weight: 500; white-space: nowrap; }
+    .status{position:relative;padding:14px 32px 0;height:55px;font-size:16px}
+    .status:before{content:"";position:absolute;width:153px;height:39px;border-radius:22px;background:#000;top:13px;left:50%;transform:translateX(-50%)}
+    .status:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#f23346;top:27px;left:128px}
+    .nav{padding:14px 16px 25px}.nav .back{left:16px;top:14px}.nav .title{font-size:17px}
+    .tabs{gap:21px;padding:0 16px;border:0;font-size:14px}.tabs span,.tabs .on{padding-bottom:13px}.tabs .on{border-bottom-width:2px}
+    .hrow{display:flex;flex-wrap:wrap;gap:0;padding:0 16px 22px;border:0}
+    .hrow .date{width:100%;font-size:11px;line-height:1;padding:0 0 17px}
+    .hrow .mid{padding-left:32px;position:relative}
+    .hrow .act{font-size:13px;gap:5px}.hrow .act .coin{position:absolute;left:0;top:-1px;width:21px!important;height:21px!important}
+    .hrow .qty{font-size:11px;margin-top:2px}
+    .hrow .right{font-size:12px;padding-top:7px;color:#ed334f!important}
+    .tag{font-size:9px;padding:2px 4px;border-radius:4px;font-weight:500}
+    .tag.g{color:#00b87a;background:#e6f8f1}.tag.r{color:#ed334f;background:#fdecef}
+    .scroll{padding-top:14px}
   </style>
 </head>
 <body class="capture">
@@ -66,7 +80,7 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開空 BTC-USDC</div>
           <div class="qty">0.00016 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">06/08/2026</div>
@@ -74,7 +88,7 @@
           <div class="act"><div class="coin eth" style="width:20px;height:20px;font-size:9px">◆</div>開多 ETH-USDC</div>
           <div class="qty">0.0055 ETH</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">21/07/2026</div>
@@ -82,12 +96,12 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開空 BTC-USDC</div>
           <div class="qty">0.00016 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">17/06/2026</div>
         <div class="mid">
-          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>平多 BTC-USDC 止盈</div>
+          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>平多 BTC-USDC <span class="tag g">止盈</span></div>
           <div class="qty">0.00153 BTC</div>
         </div>
         <div class="right green">0.4 USDC</div>
@@ -98,7 +112,7 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開多 BTC-USDC</div>
           <div class="qty">0.00153 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right red">-0.044 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">27/04/2026</div>
@@ -114,12 +128,12 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開多 BTC-USDC</div>
           <div class="qty">0.00014 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right red">&gt;-0.01 USDC</div>
       </div>
       <div class="hrow">
         <div class="date">15/01/2026</div>
         <div class="mid">
-          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>平空 BTC-USDC 止損</div>
+          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>平空 BTC-USDC <span class="tag r">止損</span></div>
           <div class="qty">0.00011 BTC</div>
         </div>
         <div class="right red">-0.22 USDC</div>
@@ -130,7 +144,7 @@
           <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開空 BTC-USDC</div>
           <div class="qty">0.00011 BTC</div>
         </div>
-        <div class="right muted">&gt;-0.01 USDC</div>
+        <div class="right red">&gt;-0.01 USDC</div>
       </div>
     </div>
   </div>

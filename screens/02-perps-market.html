@@ -90,12 +90,22 @@
     .mrow .right { text-align: right; }
     .mrow .px { font-size: 15px; font-weight: 600; }
     .mrow .chg { font-size: 12px; margin-top: 2px; }
+    .status{height:63px;padding:22px 32px 0;font-size:16px;position:relative}
+    .status::before{content:"";position:absolute;top:13px;left:116px;width:153px;height:34px;border-radius:19px;background:#000}
+    .status::after{content:"";position:absolute;top:24px;left:127px;width:10px;height:10px;border-radius:50%;background:#ed3d4d}
+    .hdr{padding:6px 16px 24px}.hdr h1{font-size:18px}.hdr h1 .info{width:13px;height:13px;font-size:9px}.hdr .acts{gap:18px}
+    .asset-card{margin:0 14px 31px;border-radius:14px;padding:19px 14px 15px;background:#f7f7f7}.asset-card .lbl{font-size:11px}.asset-card .total{font-size:23px;margin:6px 0 3px}.asset-card .avail{font-size:12px}.asset-card .logos{top:36px;right:18px;width:35px;height:35px}.asset-card .logos .usdc{width:30px;height:30px}
+    .asset-btns{margin-top:21px;gap:12px}.asset-btns button{height:37px;font-size:13px}.asset-btns .w{background:#ededed}
+    .tabs{gap:22px;padding:0 16px;font-size:14px;border:0}.tabs span,.tabs .on{padding-bottom:10px}.tabs .on{border-bottom-width:2px}
+    .filters{padding:17px 14px 11px;gap:9px}.filters .chip{height:25px;padding:0 12px;border-radius:5px;font-size:11px;background:transparent}.filters .chip.on{background:#f5f5f5;color:#111}
+    .col-hdr{padding:4px 15px 3px;font-size:10px}.mrow{padding:9px 14px;gap:11px}.mrow .pair,.mrow .px{font-size:14px}.mrow .vol,.mrow .chg{font-size:11px}.coin{width:29px;height:29px}.mrow .pair .lev{font-size:9px;background:#f4f4f4;padding:2px 4px;border-radius:3px}
+    .tabbar{height:67px;padding:8px 0 18px}.tabbar a{font-size:9px;gap:2px}.tabbar a svg{width:20px;height:20px}.tabbar .infty{font-size:21px;line-height:20px}
   </style>
 </head>
 <body class="capture">
 <div class="phone" id="screen">
   <div class="status">
-    <span>10:06</span>
+    <span>10:03⌁</span>
     <div class="right">
       <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
@@ -145,63 +155,63 @@
           <div class="vol">$1.11B</div>
         </div>
         <div class="right">
-          <div class="px">64,364</div>
-          <div class="chg red">-0.26%</div>
+          <div class="px">64,381</div>
+          <div class="chg red">-0.28%</div>
         </div>
       </div>
       <div class="mrow">
         <div class="coin eth">◆</div>
         <div class="mid">
           <div class="pair">ETH-USDC <span class="lev">25x</span></div>
-          <div class="vol">$768.25M</div>
+          <div class="vol">$770.1M</div>
         </div>
         <div class="right">
-          <div class="px">1,902.1</div>
-          <div class="chg red">-0.08%</div>
+          <div class="px">1,901.9</div>
+          <div class="chg red">-0.23%</div>
         </div>
       </div>
       <div class="mrow">
         <div class="coin skhx">SK</div>
         <div class="mid">
           <div class="pair">SKHX-USDC <span class="lev">10x</span><span class="xyz">XYZ</span></div>
-          <div class="vol">$582.75M</div>
+          <div class="vol">$594.3M</div>
         </div>
         <div class="right">
-          <div class="px">1,013.2</div>
-          <div class="chg red">-5.92%</div>
+          <div class="px">1,013.1</div>
+          <div class="chg red">-6.32%</div>
         </div>
       </div>
       <div class="mrow">
         <div class="coin sndk">SD</div>
         <div class="mid">
           <div class="pair">SNDK-USDC <span class="lev">10x</span><span class="xyz">XYZ</span></div>
-          <div class="vol">$542.89M</div>
+          <div class="vol">$544.68M</div>
         </div>
         <div class="right">
-          <div class="px">1,257.9</div>
-          <div class="chg green">+0.51%</div>
+          <div class="px">1,258.8</div>
+          <div class="chg green">+1.08%</div>
         </div>
       </div>
       <div class="mrow">
         <div class="coin spcx">SP</div>
         <div class="mid">
           <div class="pair">SPCX-USDC <span class="lev">20x</span><span class="xyz">XYZ</span></div>
-          <div class="vol">$439.02M</div>
+          <div class="vol">$439.34M</div>
         </div>
         <div class="right">
-          <div class="px">114.16</div>
-          <div class="chg green">+4.18%</div>
+          <div class="px">114.17</div>
+          <div class="chg green">+4.20%</div>
         </div>
       </div>
       <div class="mrow">
         <div class="coin xyz">X</div>
         <div class="mid">
           <div class="pair">XYZ100-USDC <span class="lev">30x</span><span class="xyz">XYZ</span></div>
-          <div class="vol">$400.85M</div>
+          <div class="vol">$405.12M</div>
         </div>
         <div class="right">
-          <div class="px">29,420</div>
-          <div class="chg green">+0.02%</div>
+          <div class="px">29,430</div>
+          <div class="chg green">+0.18%</div>
         </div>
       </div>
     </div>

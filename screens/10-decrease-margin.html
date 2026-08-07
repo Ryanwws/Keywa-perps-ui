@@ -36,6 +36,21 @@
       background: #000; color: #fff; width: calc(100% - 32px);
       font-size: 16px; font-weight: 600;
     }
+    .status{position:relative;padding:14px 32px 0;height:55px;font-size:16px}
+    .status:before{content:"";position:absolute;width:153px;height:39px;border-radius:22px;background:#000;top:13px;left:50%;transform:translateX(-50%)}
+    .status:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#f23346;top:27px;left:128px}
+    .nav{justify-content:flex-start;padding:12px 16px 0;gap:16px}.nav .back{position:static}.nav .title{font-size:15px}
+    .pxline{text-align:left;padding:0 0 0 49px;font-size:13px}
+    .amt{padding:135px 16px 0}.amt .big{font-size:34px}
+    .amt .big:after{content:"";display:inline-block;width:1.5px;height:43px;background:#111;vertical-align:-9px;margin-left:-78px}
+    .liq{font-size:13px;padding:9px 16px 0}
+    .avail{margin-top:auto;border-top:1px solid #f2f2f2;padding:10px 16px 9px;font-size:12px}
+    .cta{order:1;margin:0 16px 11px;width:calc(100% - 32px);height:43px;font-size:14px}
+    .pct-row{order:2!important;padding:0 16px!important;margin:0 0 13px!important;gap:10px}.pct-row .pct{height:29px;border-radius:7px;font-size:12px}
+    .screen-body>div[style="flex:1"]{display:none}
+    .keypad{order:3;height:157px;background:#fff;padding:0 16px 8px;flex-shrink:0}
+    .keypad .key{height:37px;margin:0;background:#fff;box-shadow:none;border-radius:0;font-size:22px}
+    .keypad .key.del{font-size:0}.keypad .key.del:after{content:"⌫";font-size:19px}
   </style>
 </head>
 <body class="capture">

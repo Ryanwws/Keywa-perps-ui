@@ -6,12 +6,13 @@
   <title>永續 · 當前訂單</title>
   <link rel="stylesheet" href="../css/app.css" />
   <style>
+    .status{height:48px;padding:21px 31px 0;font-size:16px;position:relative}.island{position:absolute;left:116px;top:13px;width:153px;height:33px;border-radius:20px;background:#000}.island:before{content:"";position:absolute;left:11px;top:11px;width:10px;height:10px;border-radius:50%;background:#e92e3b}
     .hdr {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 6px 16px 10px;
+      height:69px;padding:13px 15px 8px;
     }
     .hdr h1 {
-      font-size: 28px; font-weight: 700; display: flex; align-items: center; gap: 6px;
+      font-size:20px;font-weight:700;display:flex;align-items:center;gap:5px;
     }
     .hdr h1 .info {
       width: 16px; height: 16px; border-radius: 50%; border: 1.4px solid #8e8e93;
@@ -20,14 +21,13 @@
     }
     .hdr .acts { display: flex; gap: 14px; align-items: center; }
     .asset-card {
-      margin: 0 16px 12px; background: var(--bg-muted); border-radius: 16px;
-      padding: 16px 16px 14px; position: relative;
+      margin:0 14px 18px;background:#f7f7f7;border-radius:14px;padding:17px 15px 12px;position:relative;
     }
     .asset-card .lbl {
       font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 4px;
     }
     .asset-card .total {
-      font-size: 32px; font-weight: 700; margin: 6px 0 4px; letter-spacing: -0.5px;
+      font-size:25px;font-weight:700;margin:4px 0 2px;letter-spacing:-.4px;
     }
     .asset-card .avail { font-size: 13px; color: var(--text-2); }
     .asset-card .logos {
@@ -45,14 +45,14 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 8px; color: #fff; font-weight: 700;
     }
-    .asset-btns { display: flex; gap: 10px; margin-top: 14px; }
+    .asset-btns{display:flex;gap:10px;margin-top:21px}
     .asset-btns button {
-      flex: 1; height: 40px; border-radius: 999px; font-size: 15px; font-weight: 500;
+      flex:1;height:37px;border-radius:999px;font-size:14px;font-weight:600;
     }
     .asset-btns .w { background: #e8e8ed; color: #000; }
     .asset-btns .a { background: #000; color: #fff; }
     .tabs {
-      display: flex; gap: 22px; padding: 6px 16px 0; font-size: 15px; color: var(--text-2);
+      display:flex;gap:20px;padding:0 15px;font-size:14px;color:#8e8e93;height:42px;
       border-bottom: 0.5px solid var(--border);
     }
     .tabs .on {
@@ -62,7 +62,7 @@
     .tabs span { padding-bottom: 10px; }
     .orow {
       display: flex; align-items: flex-start; gap: 10px;
-      padding: 16px; border-bottom: 0.5px solid var(--border);
+      padding:12px 14px;border-bottom:.5px solid #eee;height:64px;
     }
     .orow .mid { flex: 1; min-width: 0; }
     .orow .name { font-size: 16px; font-weight: 600; }
@@ -73,12 +73,13 @@
     .orow .right { text-align: right; }
     .orow .px { font-size: 16px; font-weight: 600; }
     .orow .otype { font-size: 12px; color: var(--text-2); margin-top: 4px; }
+    .tabbar{height:72px;padding:6px 0 21px}
   </style>
 </head>
 <body class="capture">
 <div class="phone" id="screen">
   <div class="status">
-    <span>14:36</span>
+    <span>14:36</span><div class="island"></div>
     <div class="right">
       <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
       <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
@@ -88,7 +89,7 @@
   <div class="screen-body">
     <div class="scroll">
       <div class="hdr">
-        <h1>永續 <span class="info">i</span></h1>
+        <h1>永續 <span class="info">?</span></h1>
         <div class="acts">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/><path d="M4 6l2 1M20 6l-2 1"/></svg>

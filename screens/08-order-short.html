@@ -78,6 +78,23 @@
       background: var(--red-cta); color: #fff;
       font-size: 16px; font-weight: 600;
     }
+    .status{position:relative;padding:14px 32px 0;height:55px;font-size:16px}
+    .status:before{content:"";position:absolute;width:153px;height:39px;border-radius:22px;background:#000;top:13px;left:50%;transform:translateX(-50%)}
+    .status:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:#f23346;top:27px;left:128px}
+    .nav{padding:11px 16px 0;gap:14px}.nav .title{font-size:15px}
+    .pxline{padding:0 16px 0 47px;font-size:13px}
+    .scroll{overflow:hidden;display:flex;flex-direction:column}
+    .amt-box{margin:40px 16px 29px}.amt-box .usd{font-size:32px}.amt-box .btc{font-size:13px;margin-top:7px}
+    .slider-track{margin:0 40px 1px;height:25px}.slider-track .fill{width:12%}.slider-track .thumb{left:12%;width:12px;height:12px;border:2px solid #222}.slider-track .marks i{width:6px;height:6px;background:#eee}.slider-track .marks i:first-child{background:#222}
+    .slider-labels{padding:0 33px 13px;font-size:11px}
+    .cfg{margin:0 16px 5px;padding:2px 12px;border-radius:12px;background:#fafafa}
+    .cfg .param{padding:9px 0;font-size:13px}
+    .params{padding:0 16px}.params .param{padding:5px 0;border:0;font-size:12px}
+    .qty-row{margin-top:auto;padding:12px 16px 7px;border-top:1px solid #f2f2f2;font-size:12px}
+    .cta-wrap{padding:3px 16px 9px}.cta-wrap button{height:43px;border-radius:24px;font-size:14px}
+    .keypad{height:157px;background:#fff;padding:0 16px 8px;flex-shrink:0}
+    .keypad .key{height:37px;margin:0;background:#fff;box-shadow:none;border-radius:0;font-size:22px}
+    .keypad .key.del{font-size:0}.keypad .key.del:after{content:"⌫";font-size:19px}
   </style>
 </head>
 <body class="capture">

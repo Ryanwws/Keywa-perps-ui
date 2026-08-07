@@ -15,7 +15,8 @@
   --border: #ebebeb;
   --border-light: #f0f0f0;
   --phone-w: 390px;
-  --phone-h: 844px;
+  /* Original recording: 1320 × 2868, scaled to 390px wide. */
+  --phone-h: 847px;
   --safe-b: 34px;
   --nav-h: 56px;
   --font: -apple-system, "SF Pro Text", "PingFang TC", "Helvetica Neue", sans-serif;
@@ -343,7 +344,7 @@ body.capture .phone { box-shadow: none; }
 .board-col img,
 .board-col iframe {
   width: 390px;
-  height: 844px;
+  height: 847px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fff;
