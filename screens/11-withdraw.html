@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>提現</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; justify-content: center;
+      padding: 4px 12px 6px; position: relative;
+    }
+    .nav .back { position: absolute; left: 12px; top: 6px; }
+    .nav .title { font-size: 17px; font-weight: 700; }
+    .amt {
+      text-align: center; padding: 28px 16px 8px;
+    }
+    .amt .big {
+      font-size: 36px; font-weight: 700; letter-spacing: -0.5px;
+    }
+    .hints {
+      text-align: center; font-size: 12px; color: var(--text-2);
+      line-height: 1.7; padding: 4px 16px 14px;
+    }
+    .slider-track { margin-top: 4px; }
+    .slider-track .fill { width: 0%; }
+    .slider-track .thumb { left: 0%; }
+    .slider-labels {
+      display: flex; justify-content: space-between;
+      padding: 0 16px 12px; font-size: 11px; color: var(--text-2);
+    }
+    .rows { padding: 4px 16px; }
+    .row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 0.5px solid var(--border-light);
+      font-size: 14px;
+    }
+    .row .k { color: var(--text-2); }
+    .row .v { font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .confirm {
+      margin: 12px 16px 10px; height: 48px; border-radius: 999px;
+      background: #000; color: #fff; width: calc(100% - 32px);
+      font-size: 16px; font-weight: 600;
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:06</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></div>
+      <div class="title">提現</div>
+    </div>
+    <div class="amt">
+      <div class="big">7.827753</div>
+    </div>
+    <div class="hints">
+      可提取：7.827753 USDC<br/>
+      最小提幣數量：10 USDC
+    </div>
+    <div class="slider-track">
+      <div class="rail"></div>
+      <div class="fill"></div>
+      <div class="marks"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="thumb"></div>
+    </div>
+    <div class="slider-labels">
+      <span>0%</span><span>50%</span><span>100%</span>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="k">接收代幣</span>
+        <span class="v"><div class="coin usdc" style="width:20px;height:20px;font-size:8px">$</div>USDC</span>
+      </div>
+      <div class="row">
+        <span class="k">提現手續費</span>
+        <span class="v">1 USDC</span>
+      </div>
+      <div class="row">
+        <span class="k">接收數量</span>
+        <span class="v muted">-- USDC</span>
+      </div>
+      <div class="row">
+        <span class="k">預計到賬時間</span>
+        <span class="v">5 分鐘</span>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <button class="confirm">確認</button>
+    <div class="keypad">
+      <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+      <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+      <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+      <div class="key">.</div><div class="key">0</div><div class="key del">⌫</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

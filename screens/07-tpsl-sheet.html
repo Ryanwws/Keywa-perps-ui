@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>止盈與止損</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 12px 8px;
+    }
+    .nav .pair {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 16px; font-weight: 700;
+    }
+    .nav .sub { font-size: 12px; color: var(--text-2); margin-top: 1px; margin-left: 38px; }
+    .card {
+      margin: 4px 12px 8px; border: 0.5px solid var(--border);
+      border-radius: 14px; padding: 14px;
+      filter: blur(0.2px); opacity: 0.85;
+    }
+    .card-hd { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .card-hd .t { font-size: 15px; font-weight: 700; }
+    .metrics { display: flex; justify-content: space-between; }
+    .metrics .lbl { font-size: 12px; color: var(--text-2); }
+    .metrics .val { font-size: 15px; font-weight: 600; margin-top: 4px; }
+    .bg-fill {
+      padding: 0 16px; color: var(--text-2); font-size: 13px; line-height: 1.8;
+    }
+    .sheet { max-height: 78%; }
+    .sheet-hd {
+      display: flex; align-items: center; justify-content: center;
+      padding: 8px 16px 12px; position: relative;
+    }
+    .sheet-hd h2 { font-size: 17px; font-weight: 700; }
+    .sheet-hd .info {
+      width: 16px; height: 16px; border-radius: 50%; border: 1.3px solid #8e8e93;
+      color: #8e8e93; font-size: 11px; display: inline-flex; align-items: center; justify-content: center;
+      margin-left: 4px; font-weight: 600;
+    }
+    .avg {
+      text-align: center; font-size: 13px; color: var(--text-2); margin-bottom: 14px;
+    }
+    .block { padding: 0 16px 14px; }
+    .block .title {
+      font-size: 14px; font-weight: 600; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .block .title .i {
+      width: 14px; height: 14px; border-radius: 50%; border: 1.2px solid #8e8e93;
+      color: #8e8e93; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .trig {
+      display: flex; gap: 8px; margin-bottom: 8px;
+    }
+    .trig .field {
+      flex: 1; background: var(--bg-muted); border-radius: 10px;
+      padding: 10px 12px; min-height: 52px;
+    }
+    .trig .field .lbl { font-size: 11px; color: var(--text-2); }
+    .trig .field .val { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .trig .field .val.ph { color: var(--text-3); font-weight: 400; }
+    .est { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+    .chips {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .chips span {
+      height: 28px; padding: 0 10px; border-radius: 8px;
+      background: var(--bg-muted); font-size: 12px; font-weight: 500;
+      display: inline-flex; align-items: center;
+    }
+    .chips span.on { background: #000; color: #fff; }
+    .chips .mode {
+      margin-left: auto; color: var(--text-2); font-size: 12px;
+      background: transparent; height: auto; padding: 0;
+    }
+    .cur {
+      text-align: center; font-size: 12px; color: var(--text-2);
+      padding: 4px 0 10px;
+    }
+    .sheet-acts {
+      display: flex; gap: 10px; padding: 8px 16px 10px;
+    }
+    .sheet-acts button {
+      flex: 1; height: 44px; border-radius: 999px; font-size: 15px; font-weight: 600;
+    }
+    .sheet-acts .cancel { background: var(--bg-muted); }
+    .sheet-acts .ok { background: #000; color: #fff; }
+    .sheet .keypad { flex-shrink: 0; }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:04</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></div>
+      <div>
+        <div class="pair"><div class="coin btc" style="width:28px;height:28px;font-size:13px">₿</div>BTC-USDC</div>
+        <div class="sub">40x 永續合約</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd">
+        <span class="t">倉位</span>
+        <span class="badge-short-soft">做空 10x</span>
+      </div>
+      <div class="metrics">
+        <div>
+          <div class="lbl">未實現盈虧</div>
+          <div class="val green">+$0.17 (+16.7%)</div>
+        </div>
+        <div style="text-align:right">
+          <div class="lbl">保證金（逐倉）</div>
+          <div class="val">1.24 USDC</div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-fill">
+      <div>開倉均價 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65,490</div>
+      <div>持倉數量 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.00016 BTC</div>
+      <div>強平價 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 71,292</div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-hd">
+      <h2>止盈與止損 <span class="info">i</span></h2>
+    </div>
+    <div class="avg">開倉均價 65,490 | 當前價格 64,392</div>
+    <div class="scroll" style="flex:1">
+      <div class="block">
+        <div class="title">止盈 <span class="i">i</span></div>
+        <div class="trig">
+          <div class="field">
+            <div class="lbl">觸發價格</div>
+            <div class="val">63,852.7</div>
+          </div>
+          <div class="field">
+            <div class="lbl">收益</div>
+            <div class="val">+ 25 %</div>
+          </div>
+        </div>
+        <div class="chips">
+          <span>+10%</span><span class="on">+25%</span><span>+50%</span><span>+100%</span>
+        </div>
+        <div class="est" style="margin-top:8px">預估收益 : <span class="green">0.25 USDC</span></div>
+      </div>
+      <div class="block">
+        <div class="title">止損 <span class="i">i</span></div>
+        <div class="trig">
+          <div class="field">
+            <div class="lbl">觸發價格</div>
+            <div class="val">66,144.9</div>
+          </div>
+          <div class="field">
+            <div class="lbl">虧損</div>
+            <div class="val">- 10 %</div>
+          </div>
+        </div>
+        <div class="chips">
+          <span>-5%</span><span class="on">-10%</span><span>-25%</span><span>-50%</span>
+        </div>
+        <div class="est" style="margin-top:8px">預估虧損 : <span class="red">-0.12 USDC</span></div>
+      </div>
+    </div>
+    <div class="sheet-acts">
+      <button class="cancel">取消</button>
+      <button class="ok">設定</button>
+    </div>
+    <div class="keypad">
+      <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+      <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+      <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+      <div class="key">.</div><div class="key">0</div><div class="key del">⌫</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

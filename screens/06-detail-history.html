@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>BTC-USDC · 歷史紀錄</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 12px 8px;
+    }
+    .nav .back { width: 28px; height: 28px; display: flex; align-items: center; }
+    .nav .pair {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 16px; font-weight: 700;
+    }
+    .nav .sub { font-size: 12px; color: var(--text-2); margin-top: 1px; margin-left: 38px; }
+    .card {
+      margin: 4px 12px 8px; border: 0.5px solid var(--border);
+      border-radius: 14px; padding: 14px 14px 12px;
+    }
+    .card-hd {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+    }
+    .card-hd .t { font-size: 15px; font-weight: 700; }
+    .metrics {
+      display: flex; justify-content: space-between; margin-bottom: 10px;
+    }
+    .metrics .lbl { font-size: 12px; color: var(--text-2); }
+    .metrics .val { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .metrics .r { text-align: right; }
+    .rows { border-top: 0.5px solid var(--border-light); }
+    .rows .r {
+      display: flex; justify-content: space-between;
+      padding: 9px 0; font-size: 13px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .rows .r:last-child { border-bottom: none; }
+    .rows .r .k { color: var(--text-2); }
+    .rows .r .v { font-weight: 500; }
+    .card-acts { display: flex; gap: 10px; margin-top: 12px; }
+    .card-acts button {
+      flex: 1; height: 40px; border-radius: 999px;
+      background: var(--bg-muted); font-size: 14px; font-weight: 500;
+    }
+    .hist-tabs {
+      display: flex; gap: 24px; padding: 10px 16px 0;
+      font-size: 14px; color: var(--text-2);
+      border-top: 0.5px solid var(--border);
+    }
+    .hist-tabs .on {
+      color: #000; font-weight: 700; padding-bottom: 10px;
+      border-bottom: 2.5px solid #000;
+    }
+    .hist-tabs span { padding-bottom: 10px; }
+    .hrow {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 16px; border-bottom: 0.5px solid var(--border-light);
+    }
+    .hrow .date { font-size: 11px; color: var(--text-2); width: 72px; flex-shrink: 0; line-height: 1.3; }
+    .hrow .mid { flex: 1; min-width: 0; }
+    .hrow .act { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .hrow .qty { font-size: 12px; color: var(--text-2); margin-top: 3px; }
+    .hrow .right { text-align: right; font-size: 13px; font-weight: 500; }
+    .bottom-bar {
+      border-top: 0.5px solid var(--border);
+      padding: 10px 16px calc(10px + var(--safe-b));
+      display: flex; align-items: center; justify-content: space-between;
+      background: #fff; flex-shrink: 0;
+    }
+    .bottom-bar .px { font-size: 18px; font-weight: 700; }
+    .bottom-bar .chg { font-size: 12px; margin-left: 6px; }
+    .bottom-bar .tf {
+      display: flex; gap: 12px; font-size: 12px; color: var(--text-2);
+    }
+    .bottom-bar .tf .on { color: #000; font-weight: 700; }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:03</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></div>
+      <div>
+        <div class="pair"><div class="coin btc" style="width:28px;height:28px;font-size:13px">₿</div>BTC-USDC</div>
+        <div class="sub">40x 永續合約</div>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="card">
+        <div class="card-hd">
+          <span class="t">倉位</span>
+          <span class="badge-short-soft">做空 10x</span>
+        </div>
+        <div class="metrics">
+          <div>
+            <div class="lbl">未實現盈虧</div>
+            <div class="val green">+$0.17 (+16.8%)</div>
+          </div>
+          <div class="r">
+            <div class="lbl">保證金（逐倉）</div>
+            <div class="val">1.24 USDC</div>
+          </div>
+        </div>
+        <div class="rows">
+          <div class="r"><span class="k">開倉均價</span><span class="v">65,490</span></div>
+          <div class="r"><span class="k">持倉數量</span><span class="v">0.00016 BTC</span></div>
+          <div class="r"><span class="k">強平價</span><span class="v">71,292</span></div>
+          <div class="r"><span class="k">止盈/止損</span><span class="v">未設定</span></div>
+          <div class="r"><span class="k">資金費用</span><span class="v green">0.03 USDC</span></div>
+        </div>
+        <div class="card-acts">
+          <button>設定止盈/止損</button>
+          <button>平倉</button>
+        </div>
+      </div>
+      <div class="hist-tabs">
+        <span class="on">歷史紀錄</span>
+        <span>當前委託</span>
+      </div>
+      <div class="hrow">
+        <div class="date">21/07/2026</div>
+        <div class="mid">
+          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開空 BTC-USDC</div>
+          <div class="qty">0.00016 BTC</div>
+        </div>
+        <div class="right muted">&gt;-0.01 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="date">17/06/2026</div>
+        <div class="mid">
+          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>平多 BTC-USDC 止盈</div>
+          <div class="qty">0.00153 BTC</div>
+        </div>
+        <div class="right green">0.4 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="date">27/04/2026</div>
+        <div class="mid">
+          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>開多 BTC-USDC</div>
+          <div class="qty">0.00153 BTC</div>
+        </div>
+        <div class="right muted">&gt;-0.01 USDC</div>
+      </div>
+      <div class="hrow">
+        <div class="date">17/04/2026</div>
+        <div class="mid">
+          <div class="act"><div class="coin btc" style="width:20px;height:20px;font-size:10px">₿</div>平多 BTC-USDC</div>
+          <div class="qty">0.00014 BTC</div>
+        </div>
+        <div class="right green">0.4 USDC</div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div>
+        <span class="px">64,397</span>
+        <span class="chg red">-0.26%</span>
+      </div>
+      <div class="tf">
+        <span class="on">1m</span><span>5m</span><span>15m</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>錢包 · 永續 Tab</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 16px 8px;
+    }
+    .avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg,#00c28a,#0a8f6a);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .web3-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 6px 14px; border-radius: 999px;
+      background: var(--bg-muted); font-size: 14px; font-weight: 600;
+    }
+    .top-actions { display: flex; align-items: center; gap: 10px; }
+    .bell { position: relative; }
+    .bell .dot {
+      position: absolute; top: -2px; right: -4px;
+      min-width: 14px; height: 14px; border-radius: 7px;
+      background: var(--red); color: #fff; font-size: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; padding: 0 3px;
+    }
+    .search {
+      margin: 0 16px 12px; height: 36px; border-radius: 10px;
+      background: var(--bg-muted); display: flex; align-items: center;
+      gap: 8px; padding: 0 12px; color: var(--text-2); font-size: 14px;
+    }
+    .wallet-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px 4px;
+    }
+    .wallet-name {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--text-2);
+    }
+    .bal-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px 14px; gap: 12px;
+    }
+    .bal { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; flex: 1; min-width: 0; }
+    .recv {
+      flex-shrink: 0;
+      height: 36px; padding: 0 18px; border-radius: 999px;
+      background: #000; color: #fff; font-size: 14px; font-weight: 500;
+    }
+    .actions {
+      display: flex; justify-content: space-around;
+      padding: 4px 12px 14px;
+    }
+    .actions .item {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--text);
+    }
+    .actions .circ {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--bg-muted);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .banner {
+      margin: 0 16px 14px; height: 72px; border-radius: 12px;
+      background: linear-gradient(90deg,#eef2ff,#f5f5f5);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 14px; overflow: hidden;
+    }
+    .banner .t1 { font-size: 14px; font-weight: 600; }
+    .banner .t2 { font-size: 12px; color: var(--text-2); margin-top: 4px; }
+    .banner .art {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: linear-gradient(145deg,#4a7cff,#9ec0ff);
+    }
+    .subtabs {
+      display: flex; gap: 20px; padding: 4px 16px 10px;
+      font-size: 15px; color: var(--text-2);
+    }
+    .subtabs .on { color: var(--text); font-weight: 700; }
+    .equity {
+      margin: 0 16px 12px; background: var(--bg-muted);
+      border-radius: 12px; padding: 14px 16px;
+    }
+    .equity .row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 14px; color: var(--text-2);
+    }
+    .equity .row + .row { margin-top: 10px; }
+    .equity .val { color: var(--text); font-weight: 600; font-size: 15px; }
+    .sec-title {
+      padding: 4px 16px 8px; font-size: 13px; color: var(--text-2);
+    }
+    .pos {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 16px;
+    }
+    .pos .mid { flex: 1; min-width: 0; }
+    .pos .name { font-size: 15px; font-weight: 600; }
+    .pos .sub { font-size: 12px; margin-top: 3px; display: flex; gap: 6px; align-items: center; }
+    .pos .sub .sep { color: #d0d0d0; }
+    .pos .right { text-align: right; }
+    .pos .amt { font-size: 15px; font-weight: 600; }
+    .pos .pnl { font-size: 12px; margin-top: 3px; }
+    .start-trade {
+      margin: 16px auto 20px; width: calc(100% - 64px);
+      height: 44px; border-radius: 999px;
+      border: 1px solid #e5e5ea; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; font-size: 14px; font-weight: 500; color: var(--text);
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:03</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="scroll">
+      <div class="topbar">
+        <div class="avatar">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="#fff" stroke-width="1.5"/><path d="M4 8.5c.8 1 1.8 1.5 3 1.5s2.2-.5 3-1.5" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div class="web3-pill">Web3 <svg width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="top-actions">
+          <div class="bell">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8"><path d="M6 9a6 6 0 1112 0c0 3.5 1.2 5 1.8 5.5H4.2C4.8 14 6 12.5 6 9z"/><path d="M10 18a2 2 0 004 0"/></svg>
+            <span class="dot">1</span>
+          </div>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg>
+        </div>
+      </div>
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        搜尋幣種 / 合約
+      </div>
+      <div class="wallet-row">
+        <div class="wallet-name">錢包 B <svg width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="#8e8e93" stroke-width="1.4" fill="none"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 012-2h10"/></svg>
+        </div>
+      </div>
+      <div class="bal-row">
+        <div class="bal">$1,159.48</div>
+        <button class="recv">接收</button>
+      </div>
+      <div class="actions">
+        <div class="item"><div class="circ"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>發送</div>
+        <div class="item"><div class="circ"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M12 21s7-4.5 7-11a7 7 0 10-14 0c0 6.5 7 11 7 11z"/></svg></div>空投</div>
+        <div class="item"><div class="circ"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M6 8l6-4 6 4v8l-6 4-6-4V8z" fill="none" stroke="#000" stroke-width="1.8"/><path d="M9 12h6M12 9v6" stroke="#000" stroke-width="1.6"/></svg></div>Polymarket</div>
+        <div class="item"><div class="circ"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="4" cy="4" r="1.6" fill="#000"/><circle cx="14" cy="4" r="1.6" fill="#000"/><circle cx="4" cy="14" r="1.6" fill="#000"/><circle cx="14" cy="14" r="1.6" fill="#000"/></svg></div>更多</div>
+      </div>
+      <div class="banner">
+        <div>
+          <div class="t1">TeQoin 空投</div>
+          <div class="t2">分享 40,000 TeQoin</div>
+        </div>
+        <div class="art"></div>
+      </div>
+      <div class="subtabs">
+        <span>我的資產</span>
+        <span class="on">永續</span>
+      </div>
+      <div class="equity">
+        <div class="row"><span>帳戶權益</span><span class="val">$11.12</span></div>
+        <div class="row"><span>未實現盈虧</span><span class="val green">+$0.16</span></div>
+      </div>
+      <div class="sec-title">倉位</div>
+      <div class="pos">
+        <div class="coin btc">₿</div>
+        <div class="mid">
+          <div class="name">BTC-USDC</div>
+          <div class="sub"><span class="badge-short">做空 10x</span><span class="sep">|</span><span class="muted">0.00016 BTC</span></div>
+        </div>
+        <div class="right">
+          <div class="amt">$1.25</div>
+          <div class="pnl green">$0.17(+17.0%)</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="pos">
+        <div class="coin eth">◆</div>
+        <div class="mid">
+          <div class="name">ETH-USDC</div>
+          <div class="sub"><span class="badge-long">做多 10x</span><span class="sep">|</span><span class="muted">0.0055 ETH</span></div>
+        </div>
+        <div class="right">
+          <div class="amt">$1.02</div>
+          <div class="pnl red">-$0.01(-1.8%)</div>
+        </div>
+      </div>
+      <div class="start-trade">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 2v10M2 7h10" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+        開始新的交易
+      </div>
+    </div>
+    <nav class="tabbar">
+      <a class="active" href="#">
+        <svg viewBox="0 0 24 24" fill="#000"><path d="M4 8.5L12 3l8 5.5V20a1 1 0 01-1 1h-5v-7H10v7H5a1 1 0 01-1-1V8.5z"/></svg>
+        錢包
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><path d="M4 18V10M10 18V6M16 18v-7M20 18V8"/></svg>
+        市場
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5"/><path d="M17 7v4M7 13v4"/></svg>
+        兌換
+      </a>
+      <a href="02-perps-market.html">
+        <span class="infty">∞</span>
+        永續
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5l-2 5-5 2 2-5 5-2z"/></svg>
+        發現
+      </a>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

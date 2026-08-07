@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>做空 BTC</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 12px 2px;
+    }
+    .nav .title { font-size: 17px; font-weight: 700; }
+    .pxline {
+      padding: 2px 16px 14px 40px; font-size: 13px; color: var(--text-2);
+    }
+    .pxline b { color: #000; font-weight: 600; margin-right: 6px; }
+    .amt-box {
+      margin: 8px 16px 10px; text-align: center;
+    }
+    .amt-box .usd {
+      font-size: 36px; font-weight: 700; letter-spacing: -0.5px;
+    }
+    .amt-box .btc {
+      font-size: 13px; color: var(--text-2); margin-top: 4px;
+    }
+    .slider-track { margin: 8px 20px 4px; }
+    .slider-track .fill { width: 14%; }
+    .slider-track .thumb { left: 14%; }
+    .slider-labels {
+      display: flex; justify-content: space-between;
+      padding: 0 16px 14px; font-size: 11px; color: var(--text-2);
+    }
+    .cfg {
+      margin: 0 16px 8px; background: var(--bg-muted);
+      border-radius: 12px; padding: 2px 14px;
+    }
+    .cfg .param {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 13px 0; font-size: 14px;
+      border-bottom: 0.5px solid rgba(0,0,0,.06);
+    }
+    .cfg .param:last-child { border-bottom: none; }
+    .cfg .k {
+      color: var(--text);
+      border-bottom: 1px dotted #c7c7cc;
+      padding-bottom: 1px;
+    }
+    .cfg .v {
+      display: flex; align-items: center; gap: 4px; font-weight: 500;
+    }
+    .cfg .v .chev { color: var(--text-3); }
+    .params { padding: 0 16px; }
+    .param {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 0.5px solid var(--border-light);
+      font-size: 14px;
+    }
+    .param .k {
+      color: var(--text-2);
+      border-bottom: 1px dotted #c7c7cc;
+      padding-bottom: 1px;
+    }
+    .param .v {
+      display: flex; align-items: center; gap: 4px; font-weight: 500;
+    }
+    .param .v .chev { color: var(--text-3); }
+    .qty-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 16px 8px; font-size: 13px; color: var(--text-2);
+    }
+    .qty-row .left {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cta-wrap { padding: 4px 16px 8px; }
+    .cta-wrap button {
+      width: 100%; height: 48px; border-radius: 12px;
+      background: var(--red-cta); color: #fff;
+      font-size: 16px; font-weight: 600;
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:05</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg>
+      <div class="title">做空 BTC</div>
+    </div>
+    <div class="pxline"><b>64,385</b><span class="red">-0.23%</span></div>
+    <div class="scroll">
+      <div class="amt-box">
+        <div class="usd">10.5 USDC</div>
+        <div class="btc">0.00016 BTC</div>
+      </div>
+      <div class="slider-track">
+        <div class="rail"></div>
+        <div class="fill"></div>
+        <div class="marks"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="thumb"></div>
+      </div>
+      <div class="slider-labels">
+        <span>0%</span><span>50%</span><span>100%</span>
+      </div>
+      <div class="cfg">
+        <div class="param"><span class="k">委託類型</span><span class="v">市價 <span class="chev">›</span></span></div>
+        <div class="param"><span class="k">槓桿倍數</span><span class="v">10x <span class="chev">›</span></span></div>
+        <div class="param"><span class="k">止盈/止損</span><span class="v" style="color:#8e8e93;font-weight:400;font-size:13px">未設定止盈 / 未設定止損 <span class="chev">›</span></span></div>
+      </div>
+      <div class="params">
+        <div class="param"><span class="k">保證金</span><span class="v">1.04 USDC</span></div>
+        <div class="param"><span class="k">強平價</span><span class="v">70,620</span></div>
+        <div class="param"><span class="k">滑點</span><span class="v">1% <span class="chev">›</span></span></div>
+        <div class="param"><span class="k">交易手續費</span><span class="v">&lt;0.01 USDC</span></div>
+      </div>
+      <div class="qty-row">
+        <span class="left"><div class="coin usdc" style="width:18px;height:18px;font-size:8px">$</div>數量</span>
+        <span>8.82 USDC <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="2" style="display:inline;vertical-align:-1px"><path d="M12 5v14M5 12h14"/></svg></span>
+      </div>
+    </div>
+    <div class="cta-wrap">
+      <button>做空 BTC</button>
+    </div>
+    <div class="keypad">
+      <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+      <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+      <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+      <div class="key">.</div><div class="key">0</div><div class="key del">⌫</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>永續 · 倉位</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 16px 10px;
+    }
+    .hdr h1 {
+      font-size: 28px; font-weight: 700; display: flex; align-items: center; gap: 6px;
+    }
+    .hdr h1 .info {
+      width: 16px; height: 16px; border-radius: 50%; border: 1.4px solid #8e8e93;
+      color: #8e8e93; font-size: 11px; display: flex; align-items: center; justify-content: center;
+      font-weight: 600;
+    }
+    .hdr .acts { display: flex; gap: 14px; align-items: center; }
+    .asset-card {
+      margin: 0 16px 12px; background: var(--bg-muted); border-radius: 16px;
+      padding: 16px 16px 14px; position: relative;
+    }
+    .asset-card .lbl {
+      font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 4px;
+    }
+    .asset-card .total {
+      font-size: 32px; font-weight: 700; margin: 6px 0 4px; letter-spacing: -0.5px;
+    }
+    .asset-card .avail { font-size: 13px; color: var(--text-2); }
+    .asset-card .logos {
+      position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+    }
+    .asset-card .logos .usdc {
+      width: 36px; height: 36px; border-radius: 50%; background: #2775ca;
+      color: #fff; font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .asset-card .logos .hl {
+      position: absolute; right: -2px; bottom: -2px;
+      width: 18px; height: 18px; border-radius: 50%; background: #00d1a0;
+      border: 2px solid #f5f5f5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; color: #fff; font-weight: 700;
+    }
+    .asset-btns { display: flex; gap: 10px; margin-top: 14px; }
+    .asset-btns button {
+      flex: 1; height: 40px; border-radius: 999px; font-size: 15px; font-weight: 500;
+    }
+    .asset-btns .w { background: #e8e8ed; color: #000; }
+    .asset-btns .a { background: #000; color: #fff; }
+    .tabs {
+      display: flex; gap: 22px; padding: 6px 16px 0; font-size: 15px; color: var(--text-2);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .tabs .on {
+      color: #000; font-weight: 700; padding-bottom: 10px;
+      border-bottom: 2.5px solid #000; margin-bottom: -0.5px;
+    }
+    .tabs span { padding-bottom: 10px; }
+    .pos {
+      padding: 16px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .pos-top {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .pos .mid { flex: 1; }
+    .pos .name { font-size: 16px; font-weight: 600; }
+    .pos .sub {
+      font-size: 12px; margin-top: 4px; display: flex; gap: 6px; align-items: center;
+    }
+    .pos .sub .sep { color: #d0d0d0; }
+    .pos .right { text-align: right; }
+    .pos .amt { font-size: 16px; font-weight: 600; }
+    .pos .pnl { font-size: 12px; margin-top: 4px; }
+    .pos-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 10px; font-size: 12px; color: var(--text-2);
+      padding-left: 42px;
+    }
+    .pos-meta .close {
+      height: 28px; padding: 0 12px; border-radius: 8px;
+      background: var(--bg-muted); color: #000; font-size: 12px; font-weight: 500;
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:03</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="scroll">
+      <div class="hdr">
+        <h1>永續 <span class="info">i</span></h1>
+        <div class="acts">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/><path d="M4 6l2 1M20 6l-2 1"/></svg>
+        </div>
+      </div>
+      <div class="asset-card">
+        <div class="logos">
+          <div class="usdc">$</div>
+          <div class="hl">HL</div>
+        </div>
+        <div class="lbl">總資產 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+        <div class="total">$11.12</div>
+        <div class="avail">可用餘額：$8.86</div>
+        <div class="asset-btns">
+          <button class="w">提現</button>
+          <button class="a">增加資金</button>
+        </div>
+      </div>
+      <div class="tabs">
+        <span>行情</span>
+        <span class="on">倉位</span>
+        <span>當前訂單</span>
+      </div>
+      <div class="pos">
+        <div class="pos-top">
+          <div class="coin btc">₿</div>
+          <div class="mid">
+            <div class="name">BTC-USDC</div>
+            <div class="sub"><span class="badge-short">做空 10x</span><span class="sep">|</span><span class="muted">0.00016 BTC</span></div>
+          </div>
+          <div class="right">
+            <div class="amt">$1.25</div>
+            <div class="pnl green">$0.17(+16.9%)</div>
+          </div>
+        </div>
+        <div class="pos-meta">
+          <span>當前價格 64,381 &nbsp;&nbsp; 強平價 71,292</span>
+          <button class="close">平倉</button>
+        </div>
+      </div>
+      <div class="pos">
+        <div class="pos-top">
+          <div class="coin eth">◆</div>
+          <div class="mid">
+            <div class="name">ETH-USDC</div>
+            <div class="sub"><span class="badge-long">做多 10x</span><span class="sep">|</span><span class="muted">0.0055 ETH</span></div>
+          </div>
+          <div class="right">
+            <div class="amt">$1.02</div>
+            <div class="pnl red">-$0.01(-1.7%)</div>
+          </div>
+        </div>
+        <div class="pos-meta">
+          <span>當前價格 1,901.9 &nbsp;&nbsp; 強平價 1,751.7</span>
+          <button class="close">平倉</button>
+        </div>
+      </div>
+    </div>
+    <nav class="tabbar">
+      <a href="01-wallet-perps-tab.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><path d="M4 8.5L12 3l8 5.5V20a1 1 0 01-1 1h-5v-7H10v7H5a1 1 0 01-1-1V8.5z"/></svg>
+        錢包
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><path d="M4 18V10M10 18V6M16 18v-7M20 18V8"/></svg>
+        市場
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5"/><path d="M17 7v4M7 13v4"/></svg>
+        兌換
+      </a>
+      <a class="active" href="#">
+        <span class="infty" style="color:#000;font-weight:500">∞</span>
+        永續
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5l-2 5-5 2 2-5 5-2z"/></svg>
+        發現
+      </a>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

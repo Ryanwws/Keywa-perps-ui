@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>BTC-USDC · 倉位 + K線</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 12px 8px;
+    }
+    .nav .back { width: 28px; height: 28px; display: flex; align-items: center; }
+    .nav .title { flex: 1; }
+    .nav .pair {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 16px; font-weight: 700;
+    }
+    .nav .sub { font-size: 12px; color: var(--text-2); margin-top: 1px; margin-left: 38px; }
+    .card {
+      margin: 4px 12px 8px; border: 0.5px solid var(--border);
+      border-radius: 14px; padding: 14px 14px 12px;
+    }
+    .card-hd {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+    }
+    .card-hd .t { font-size: 15px; font-weight: 700; }
+    .metrics {
+      display: flex; justify-content: space-between; margin-bottom: 10px;
+    }
+    .metrics .lbl { font-size: 12px; color: var(--text-2); }
+    .metrics .val { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .metrics .r { text-align: right; }
+    .metrics .edit {
+      display: inline-flex; align-items: center; gap: 2px;
+    }
+    .rows { border-top: 0.5px solid var(--border-light); }
+    .rows .r {
+      display: flex; justify-content: space-between;
+      padding: 9px 0; font-size: 13px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .rows .r:last-child { border-bottom: none; }
+    .rows .r .k { color: var(--text-2); }
+    .rows .r .v { font-weight: 500; }
+    .card-acts {
+      display: flex; gap: 10px; margin-top: 12px;
+    }
+    .card-acts button {
+      flex: 1; height: 40px; border-radius: 999px;
+      background: var(--bg-muted); font-size: 14px; font-weight: 500;
+    }
+    .panel {
+      border-top: 0.5px solid var(--border);
+      background: #fff;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .handle {
+      width: 36px; height: 4px; border-radius: 2px;
+      background: #d1d1d6; margin: 8px auto 6px;
+    }
+    .price-head {
+      display: flex; justify-content: space-between;
+      padding: 0 16px 8px;
+    }
+    .price-head .big { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+    .price-head .chg { font-size: 13px; margin-top: 2px; }
+    .price-head .stats { text-align: right; font-size: 11px; color: var(--text-2); line-height: 1.55; }
+    .price-head .stats b { color: #000; font-weight: 500; margin-left: 8px; }
+    .tf {
+      display: flex; gap: 16px; padding: 4px 16px 8px;
+      font-size: 13px; color: var(--text-2); align-items: center;
+    }
+    .tf .on {
+      color: #000; font-weight: 700; position: relative; padding-bottom: 4px;
+    }
+    .tf .on::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+      height: 2px; background: #000; border-radius: 1px;
+    }
+    .tf .more { margin-left: auto; font-size: 12px; }
+    .chart-wrap { position: relative; height: 150px; margin: 0 8px; }
+    .chart-wrap svg { width: 100%; height: 100%; }
+    .tag {
+      position: absolute; right: 4px; top: 48%;
+      background: #8e8e93; color: #fff; font-size: 10px;
+      padding: 1px 4px; border-radius: 2px;
+    }
+    .hl-lbl {
+      position: absolute; left: 6px; font-size: 10px; color: var(--text-2);
+    }
+    .times {
+      display: flex; justify-content: space-between;
+      padding: 2px 12px 4px; font-size: 10px; color: var(--text-2);
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:03</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></div>
+      <div class="title">
+        <div class="pair"><div class="coin btc" style="width:28px;height:28px;font-size:13px">₿</div>BTC-USDC</div>
+        <div class="sub">40x 永續合約</div>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="card">
+        <div class="card-hd">
+          <span class="t">倉位</span>
+          <span class="badge-short-soft">做空 10x</span>
+        </div>
+        <div class="metrics">
+          <div>
+            <div class="lbl">未實現盈虧</div>
+            <div class="val green">+$0.17 (+16.8%)</div>
+          </div>
+          <div class="r">
+            <div class="lbl edit">保證金（逐倉） <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+            <div class="val">1.24 USDC</div>
+          </div>
+        </div>
+        <div class="rows">
+          <div class="r"><span class="k">開倉均價</span><span class="v">65,490</span></div>
+          <div class="r"><span class="k">持倉數量</span><span class="v">0.00016 BTC</span></div>
+          <div class="r"><span class="k">強平價</span><span class="v">71,292</span></div>
+          <div class="r"><span class="k">止盈/止損</span><span class="v">未設定</span></div>
+          <div class="r"><span class="k">資金費用</span><span class="v green">0.03 USDC</span></div>
+        </div>
+        <div class="card-acts">
+          <button>設定止盈/止損</button>
+          <button>平倉</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="handle"></div>
+        <div class="price-head">
+          <div>
+            <div class="big">64,392</div>
+            <div class="chg red">-0.27%</div>
+          </div>
+          <div class="stats">
+            <div>24 小時成交額 <b>$1.11B</b></div>
+            <div>24 小時最高價 <b>64,967</b></div>
+            <div>24 小時最低價 <b>64,156</b></div>
+          </div>
+        </div>
+        <div class="tf">
+          <span class="on">1m</span><span>5m</span><span>15m</span><span>30m</span><span>1h</span><span>1d</span>
+          <span class="more">更多 ▾</span>
+        </div>
+        <div class="chart-wrap">
+          <span class="hl-lbl" style="top:6px">64442.0</span>
+          <span class="hl-lbl" style="bottom:22px">64267.0</span>
+          <svg viewBox="0 0 360 150" preserveAspectRatio="none">
+            <line x1="0" y1="30" x2="360" y2="30" stroke="#f0f0f0"/>
+            <line x1="0" y1="75" x2="360" y2="75" stroke="#f0f0f0"/>
+            <line x1="0" y1="120" x2="360" y2="120" stroke="#f0f0f0"/>
+            <!-- simplified candles -->
+            <g stroke-width="1.2">
+              <line x1="20" y1="40" x2="20" y2="90" stroke="#f14f5a"/><rect x="16" y="50" width="8" height="30" fill="#f14f5a"/>
+              <line x1="40" y1="35" x2="40" y2="85" stroke="#00b07c"/><rect x="36" y="45" width="8" height="28" fill="#00b07c"/>
+              <line x1="60" y1="42" x2="60" y2="95" stroke="#f14f5a"/><rect x="56" y="55" width="8" height="28" fill="#f14f5a"/>
+              <line x1="80" y1="50" x2="80" y2="100" stroke="#00b07c"/><rect x="76" y="60" width="8" height="25" fill="#00b07c"/>
+              <line x1="100" y1="38" x2="100" y2="80" stroke="#f14f5a"/><rect x="96" y="48" width="8" height="22" fill="#f14f5a"/>
+              <line x1="120" y1="45" x2="120" y2="92" stroke="#00b07c"/><rect x="116" y="55" width="8" height="26" fill="#00b07c"/>
+              <line x1="140" y1="40" x2="140" y2="88" stroke="#f14f5a"/><rect x="136" y="52" width="8" height="24" fill="#f14f5a"/>
+              <line x1="160" y1="48" x2="160" y2="95" stroke="#00b07c"/><rect x="156" y="58" width="8" height="27" fill="#00b07c"/>
+              <line x1="180" y1="35" x2="180" y2="78" stroke="#f14f5a"/><rect x="176" y="45" width="8" height="22" fill="#f14f5a"/>
+              <line x1="200" y1="42" x2="200" y2="90" stroke="#00b07c"/><rect x="196" y="52" width="8" height="28" fill="#00b07c"/>
+              <line x1="220" y1="50" x2="220" y2="100" stroke="#f14f5a"/><rect x="216" y="62" width="8" height="26" fill="#f14f5a"/>
+              <line x1="240" y1="45" x2="240" y2="88" stroke="#00b07c"/><rect x="236" y="55" width="8" height="24" fill="#00b07c"/>
+              <line x1="260" y1="40" x2="260" y2="85" stroke="#f14f5a"/><rect x="256" y="50" width="8" height="25" fill="#f14f5a"/>
+              <line x1="280" y1="48" x2="280" y2="92" stroke="#00b07c"/><rect x="276" y="58" width="8" height="22" fill="#00b07c"/>
+              <line x1="300" y1="44" x2="300" y2="86" stroke="#f14f5a"/><rect x="296" y="54" width="8" height="24" fill="#f14f5a"/>
+              <line x1="320" y1="46" x2="320" y2="82" stroke="#00b07c"/><rect x="316" y="56" width="8" height="20" fill="#00b07c"/>
+              <line x1="340" y1="50" x2="340" y2="88" stroke="#f14f5a"/><rect x="336" y="58" width="8" height="22" fill="#f14f5a"/>
+            </g>
+            <line x1="0" y1="72" x2="330" y2="72" stroke="#8e8e93" stroke-dasharray="3 3"/>
+          </svg>
+          <div class="tag">64392.0</div>
+        </div>
+        <div class="times"><span>08-07 09:22</span><span>08-07 09:36</span><span>08-07 09:49</span></div>
+        <div class="vol-row"><span class="green">VOL:3.81</span><span style="color:#c9a227">MA5:2.78</span><span style="color:#4c8dff">MA10:2.67</span></div>
+        <div style="height:28px;margin:2px 12px;display:flex;align-items:flex-end;gap:3px">
+          <i style="flex:1;height:40%;background:#00b07c;opacity:.5;display:block"></i>
+          <i style="flex:1;height:70%;background:#f14f5a;opacity:.5;display:block"></i>
+          <i style="flex:1;height:55%;background:#00b07c;opacity:.5;display:block"></i>
+          <i style="flex:1;height:85%;background:#f14f5a;opacity:.5;display:block"></i>
+          <i style="flex:1;height:45%;background:#00b07c;opacity:.5;display:block"></i>
+          <i style="flex:1;height:60%;background:#00b07c;opacity:.5;display:block"></i>
+          <i style="flex:1;height:30%;background:#f14f5a;opacity:.5;display:block"></i>
+          <i style="flex:1;height:75%;background:#00b07c;opacity:.5;display:block"></i>
+        </div>
+        <div class="macd-row"><span class="red">MACD:-0.7</span><span style="color:#c9a227">DIF:6.5</span><span style="color:#4c8dff">DEA:6.9</span></div>
+        <div class="indi-tabs">
+          <span>MA</span><span>EMA</span><span>BOLL</span><span class="on">MACD</span><span>RSI</span><span>KDJ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

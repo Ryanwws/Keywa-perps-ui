@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1" />
+  <title>增加資金</title>
+  <link rel="stylesheet" href="../css/app.css" />
+  <style>
+    .nav {
+      display: flex; align-items: center; justify-content: center;
+      padding: 4px 12px 10px; position: relative;
+    }
+    .nav .back { position: absolute; left: 12px; top: 6px; }
+    .nav .title { font-size: 17px; font-weight: 700; }
+    .amt { text-align: center; padding: 48px 16px 28px; }
+    .amt .big {
+      font-size: 52px; font-weight: 700; letter-spacing: -1px;
+      display: inline-flex; align-items: center;
+    }
+    .amt .big .cur {
+      width: 2px; height: 40px; background: var(--green);
+      margin-left: 2px; animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .amt .sub { font-size: 15px; color: var(--text); margin-top: 8px; }
+    .pay {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 20px 20px;
+    }
+    .pay .left { display: flex; align-items: center; gap: 10px; }
+    .pay .ico {
+      width: 36px; height: 36px; border-radius: 50%; background: #2775ca;
+      color: #fff; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .pay .ico .badge {
+      position: absolute; right: -2px; bottom: -2px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #00d1a0; border: 2px solid #fff;
+    }
+    .pay .lbl { font-size: 12px; color: var(--text-2); }
+    .pay .name { font-size: 15px; font-weight: 600; margin-top: 2px; }
+    .pay .right { text-align: right; }
+    .pay .bal { font-size: 15px; font-weight: 600; }
+    .pay .bal2 { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+    .confirm {
+      margin: 8px 20px 12px; height: 48px; border-radius: 999px;
+      background: #000; color: #fff; width: calc(100% - 40px);
+      font-size: 16px; font-weight: 600;
+    }
+    .pcts {
+      display: flex; gap: 10px; padding: 0 20px 16px;
+    }
+    .pcts span {
+      flex: 1; height: 36px; border-radius: 10px;
+      background: var(--bg-muted); font-size: 14px; font-weight: 500;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .keypad {
+      margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 0.5px solid var(--border);
+    }
+    .keypad button {
+      height: 54px; font-size: 24px; font-weight: 400; color: #000;
+      background: #fff; border-right: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .keypad button:nth-child(3n) { border-right: none; }
+    .fee {
+      text-align: center; font-size: 13px; color: var(--text-2);
+      padding: 10px 0 calc(10px + var(--safe-b));
+    }
+  </style>
+</head>
+<body class="capture">
+<div class="phone" id="screen">
+  <div class="status">
+    <span>10:04</span>
+    <div class="right">
+      <svg width="17" height="12" viewBox="0 0 17 12"><rect x="0" y="7" width="3" height="5" rx="0.5" fill="#000"/><rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="#000"/><rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="#000"/><rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="#000"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.2 0 4.2.8 5.8 2.2l-1.2 1.2A6.6 6.6 0 008 4.2c-1.7 0-3.3.6-4.5 1.7L2.3 4.6A8.4 8.4 0 018 2.2zm0 3.2c1.4 0 2.7.5 3.7 1.4L10.5 8A3.7 3.7 0 008 7c-.9 0-1.8.3-2.5.9L4.3 6.7A5.5 5.5 0 018 5.4zm0 3.2c.6 0 1.1.2 1.5.6L8 11.7 6.5 9.2c.4-.4.9-.6 1.5-.6z" fill="#000"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="1" width="21" height="10" rx="2.5" stroke="#000" stroke-width="1" fill="none"/><rect x="2" y="2.5" width="17" height="7" rx="1.2" fill="#000"/><rect x="22.5" y="3.5" width="2" height="5" rx="0.8" fill="#000"/></svg>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="nav">
+      <div class="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M15 19l-7-7 7-7"/></svg></div>
+      <div class="title">增加資金</div>
+    </div>
+    <div class="amt">
+      <div class="big">$10<span class="cur"></span></div>
+      <div class="sub">10 USDC</div>
+    </div>
+    <div class="pay">
+      <div class="left">
+        <div class="ico">$<span class="badge"></span></div>
+        <div>
+          <div class="lbl">付款方式</div>
+          <div class="name">USDC</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="bal">$17.94</div>
+        <div class="bal2">17.94 USDC</div>
+      </div>
+    </div>
+    <button class="confirm" type="button">確認</button>
+    <div class="pcts">
+      <span>10%</span><span>25%</span><span>50%</span><span>100%</span>
+    </div>
+    <div class="keypad">
+      <button type="button">1</button><button type="button">2</button><button type="button">3</button>
+      <button type="button">4</button><button type="button">5</button><button type="button">6</button>
+      <button type="button">7</button><button type="button">8</button><button type="button">9</button>
+      <button type="button">.</button><button type="button">0</button>
+      <button type="button" aria-label="delete">
+        <svg width="22" height="16" viewBox="0 0 24 18" fill="none" stroke="#000" stroke-width="1.6"><path d="M9 2h12a2 2 0 012 2v10a2 2 0 01-2 2H9L2 9l7-7z"/><path d="M12 6l6 6M18 6l-6 6"/></svg>
+      </button>
+    </div>
+    <div class="fee">費用：&lt;$0.01 ⓘ</div>
+  </div>
+</div>
+</body>
+</html>
