@@ -108,14 +108,14 @@ body.capture .phone { box-shadow: none; }
   font-size: 10px;
   font-weight: 400;
 }
-.tabbar a.active { color: var(--text); font-weight: 500; }
-.tabbar a svg { width: 24px; height: 24px; }
-.tabbar .infty {
-  font-size: 22px;
-  line-height: 24px;
-  font-weight: 300;
-  letter-spacing: -1px;
+.tabbar a.active { color: #6b7cff; font-weight: 500; }
+.tabbar a svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
 }
+.tabbar a svg .knob { fill: #fff; stroke: currentColor; }
 
 /* —— Common —— */
 .green { color: var(--green) !important; }
